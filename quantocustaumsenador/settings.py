@@ -7,11 +7,25 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
 BOT_NAME = 'quantocustaumsenador'
 
 SPIDER_MODULES = ['quantocustaumsenador.spiders']
 NEWSPIDER_MODULE = 'quantocustaumsenador.spiders'
 
+CONNECTION_STRING = "{drivername}://{user}:{passwd}@{host}:{port}/{db_name}".format(
+    drivername=os.environ['drivername'],
+    user=os.environ['user'],
+    passwd=os.environ['passwd'],
+    host=os.environ['host'],
+    port=os.environ['port'],
+    db_name=os.environ['db_name'],
+)
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'quantocustaumsenador (+http://www.yourdomain.com)'
